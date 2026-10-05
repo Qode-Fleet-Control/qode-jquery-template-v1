@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>jQuery Template</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>jQuery Template</h1>
+      <p class="lead">A static site: plain HTML and CSS, with <code>jQuery</code> for the DOM.</p>
+
+      <section>
+        <h2>Tasks</h2>
+        <form id="task-form">
+          <input id="task-input" type="text" placeholder="Add a task" autocomplete="off" required />
+          <button type="submit">Add</button>
+        </form>
+        <ul id="task-list"></ul>
+        <p class="muted"><span id="task-count">0</span> open &middot; click a task to toggle it</p>
+      </section>
+
+      <section>
+        <h2>Loaded with <code>$.getJSON</code></h2>
+        <ul id="links"><li class="muted">Loading&hellip;</li></ul>
+      </section>
+    </main>
+
+    <script src="/vendor/jquery.min.js"></script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>

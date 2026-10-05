@@ -1,0 +1,16 @@
+{
+  "name": "qode-jquery-template-v1",
+  "version": "0.0.0",
+  "private": true,
+  "description": "A static site built with jQuery, served by nginx on $PORT",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "start": "http-server dist -a 0.0.0.0 -p ${PORT:-8080} -c-1"
+  },
+  "dependencies": {
+    "jquery": "^4.0.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
