@@ -1,3 +1,8 @@
-.env
 .fleet/
 .fleet-deploy.log
+*.log
+.env
+
+node_modules/
+dist/
+.DS_Store
