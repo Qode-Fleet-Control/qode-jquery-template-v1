@@ -1,0 +1,20 @@
+# Server config for the runtime image. The nginx image's entrypoint renders this file into
+# /etc/nginx/conf.d/ at container start with envsubst, replacing only variables that are SET
+# in the environment (PORT); nginx's own variables below are left untouched.
+
+# KEEP THIS: one log line per request (status + duration) is what the workspace Monitoring tab charts.
+# One JSON object per finished request on stdout, health checks included (the platform filters
+# kube-probe itself). "duration" is nginx's request_time, in SECONDS. "path" is the request path
+# as sent, without the query string.
+# Never add bodies, cookies, Authorization headers or query strings.
+map $request_uri $fleet_log_path {
+  "~^(?<p>[^?]*)" $p;
+}
+log_format fleet_json escape=json '{"status":$status,"duration":$request_time,"method":"$request_method","path":"$fleet_log_path","ua":"$http_user_agent"}';
+
+server {
+  listen ${PORT};
+  root /usr/share/nginx/html;
+  access_log /dev/stdout fleet_json;
+  location / { try_files $uri $uri/ =404; }
+}
